@@ -1,0 +1,37 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:macros="sap.fe.macros" xmlns:rte="sap.ui.richtexteditor">
+   <VBox id="editorBox" class="sapUiSmallMargin">
+       <Title id="title" text="Documentação SAP" level="H4" class="sapUITinyMarginBottom" />
+
+
+       <rte:RichTextEditor id="RTEDocumentacao"
+                           width="100%"
+                           height="400px"
+                           customToolbar="true"
+                           showGroupFont="true"
+                           showGroupLink="true"
+                           showGroupInsert="true"
+                           sanitizeValue="false"
+                           value="{editorModel>/htmlContent}"
+                           change=".onEditorChange"
+                           editable="{editorModel>/isEditable}" />
+   </VBox>
+</core:FragmentDefinition>
+
+
+
+<!-- <core:FragmentDefinition xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:macros="sap.fe.macros" xmlns:rte="sap.ui.richtexteditor">
+	<VBox id="edtorBox" class="sapUiSmallMargin">
+		<Title id="title" text="Documentação SAP" level="H4"  class="sapUiTinyMarginBottom"/>
+		<rte:RichTextEditor id="RTEDocumentacao" 
+							width="100%" 
+							height="400px"
+							customToolbar="true"
+							showGroupFont="false"
+							showGroupLink="false"
+							showGroupInsert="false"
+							showGroupClipboard="false" 
+							value="{editorModel>/htmlDocument}"
+							change=".onEditorChange"
+							editable="{editorModel>/isEditable}" />
+	</VBox>
+</core:FragmentDefinition> -->

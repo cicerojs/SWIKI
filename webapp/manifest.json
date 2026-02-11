@@ -1,0 +1,188 @@
+{
+  "_version": "1.48.0",
+  "sap.app": {
+    "id": "br.com.descomplicando.swiki",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.14.0",
+      "toolsId": "bd676762-acd9-4334-87ff-628f965e04d5"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/sap/opu/odata4/sap/zui_swiki__document_cjs_o4/srvd/sap/zui_swiki__document_cjs/0001/",
+        "type": "OData",
+        "settings": {
+          "annotations": [
+            "annotation"
+          ],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "4.0"
+        }
+      },
+      "annotation": {
+        "type": "ODataAnnotation",
+        "uri": "annotations/annotation.xml",
+        "settings": {
+          "localUri": "annotations/annotation.xml"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.108.26",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ushell": {},
+        "sap.fe.templates": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "br.com.descomplicando.swiki.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {},
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "ZC_SWIKI__DOCUMENT_CJSList",
+          "target": "ZC_SWIKI__DOCUMENT_CJSList"
+        },
+        {
+          "pattern": "ZC_SWIKI__DOCUMENT_CJS({key}):?query:",
+          "name": "ZC_SWIKI__DOCUMENT_CJSObjectPage",
+          "target": "ZC_SWIKI__DOCUMENT_CJSObjectPage"
+        }
+      ],
+      "targets": {
+        "ZC_SWIKI__DOCUMENT_CJSList": {
+          "type": "Component",
+          "id": "ZC_SWIKI__DOCUMENT_CJSList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/ZC_SWIKI__DOCUMENT_CJS",
+              "variantManagement": "Page",
+              "navigation": {
+                "ZC_SWIKI__DOCUMENT_CJS": {
+                  "detail": {
+                    "route": "ZC_SWIKI__DOCUMENT_CJSObjectPage"
+                  }
+                }
+              },
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "ResponsiveTable"
+                  },
+                  "actions": {
+                    "idTemplate": {
+                      "press": ".extension.br.com.descomplicando.swiki.ext.controller.ListReportExt.DownloadTemplate",
+                      "visible": true,
+                      "enabled": true,
+                      "requiresSelection": false,
+                      "text": "{i18n>dowloadTemplate}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "ZC_SWIKI__DOCUMENT_CJSObjectPage": {
+          "type": "Component",
+          "id": "ZC_SWIKI__DOCUMENT_CJSObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/ZC_SWIKI__DOCUMENT_CJS",
+              "content": {
+                "body": {
+                  "sections": {
+                    "DocumentExt": {
+                      "template": "br.com.descomplicando.swiki.ext.fragment.DocumentExt",
+                      "position": {
+                        "placement": "After",
+                        "anchor": "swiki"
+                      },
+                      "title": "{i18n>documentao}"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "extends": {
+      "extensions": {
+        "sap.ui.controllerExtensions": {
+          "sap.fe.templates.ObjectPage.ObjectPageController": {
+            "controllerName": "br.com.descomplicando.swiki.ext.controller.ObjectPageExt"
+          },
+          "sap.fe.templates.ListReport.ListReportController": {
+            "controllerName": "br.com.descomplicando.swiki.ext.controller.ListReportExt"
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  }
+}
